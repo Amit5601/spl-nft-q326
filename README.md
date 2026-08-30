@@ -1,72 +1,76 @@
-# scripts-solana
+# Week 1 Assignment: SPL Token & MPL Core NFT
 
-Scripts for creating SPL tokens and NFTs on Solana devnet.
+## Completed Tasks
 
----
+### 1. SPL Token
 
-## Setup
+- Created an SPL token
+- Added token metadata
+- Minted tokens
+- Transferred tokens
 
-### 1. Add your wallet
+**Mint address:**
+`8u8jzgqN9qmXnkJ3Ggma7yNaUmqRmDfYATaeL4Auf3aJ`
 
-Place your devnet wallet keypair file at the project root:
+**Transactions:**
 
-```
-root/
-└── devnet-wallet.json   ← here
-```
+- [Mint](https://explorer.solana.com/tx/43A3wgzRY43vzZEs7tR643DThf12wtpYy83AuN8UdWVL7DaNK6J4ggt8ogwFGpaioK4JPSGuRrmUqrSpY1rTvrEg?cluster=devnet)
+- [Metadata](https://explorer.solana.com/tx/3usTXRYUfBy5jMKDBZpfaWvfKqi55e1RuGSZ712JS6M6QNPtgDPdmToxGjFkqwsA2DJ5ca4onWpJxGbo29s1DSq8?cluster=devnet)
+- [Transfer](https://explorer.solana.com/tx/4W8xBqscdfvd17fNh3cz5hba94AeHttnmJGQzo3q4ndq6Yo4KAXKYksdAPJhPeYc6MF9gGZDFtC1mjCPzBfUQu8N?cluster=devnet)
 
-It should be a JSON array of numbers, e.g. `[174, 23, ...]`.
+### 2. MPL Core NFT
 
-### 2. Install dependencies
+- Uploaded NFT image and metadata to Irys
+- Minted an NFT using Metaplex Core
+- Updated the NFT's name and metadata as the update authority
+
+**Asset:**
+`BSagrBkG7gB3ar2AVjg9pnfcHjwm8oMNqxxEAYtbQqzX`
+
+**Original name:**
+`Bhavesh NFT`
+
+**Updated name:**
+`Bhavesh updated NFT`
+
+**Transactions:**
+
+- [Mint](https://explorer.solana.com/tx/re7RnxeH64DCQRrpjK2Dp9jAeo4FXwfZbPYJ6NHo3u74e2kZCtvMQWUfS4RwmfdewHGZRLzvrMw9uJbX5499Bv4?cluster=devnet)
+- [Update](https://explorer.solana.com/tx/3Nub9eZR29oeYgstGY2nhfxTBG8vN2Bi9dQiRrNNEL7x9SARiHsgaW9x1HjeUPyy1N4NsH6HU2z5w5cTEsxvphiM?cluster=devnet)
+- [View Asset](https://explorer.solana.com/address/BSagrBkG7gB3ar2AVjg9pnfcHjwm8oMNqxxEAYtbQqzX?cluster=devnet)
+- [Original metadata](https://gateway.irys.xyz/12p9hwgXKXHG1LfqqKCS1gZTtYHV8G2tTtd6zbAsWRo)
+- [Updated metadata uri](https://gateway.irys.xyz/CrvoLy1T15gDsmReJ6zzw6UTcujvzTfKiW4q1mmkYpB1)
+
+## Run
+
+Install dependencies:
 
 ```bash
 npm install
 ```
 
+## SPL scripts
+
 ```bash
-npm install --save-dev @types/node ts-node typescript
+npm run spl:init
+npm run spl:metadata
+npm run spl:mint
+npm run spl:transfer
 ```
 
-### 3. Add your image
+## NFT scripts
 
-Place your image at the project root.
-
+```bash
+npm run nft:image
+npm run nft:metadata
+npm run nft:mint
+npm run nft:update
 ```
-root/
-└── image.jpeg   ← here
-```
 
----
+A Devnet wallet must be placed at `devnet-wallet.json`. The wallet file is excluded from Git.
 
-> Before running the scripts, go through these docs:
-> - [Solana token docs](https://solana.com/docs/tokens) — mint accounts, token accounts, and ATAs
-> - [Solana Kit](https://www.solanakit.com/) — the JS SDK used for building and sending transactions
-> - [Metaplex Token Metadata](https://www.metaplex.com/docs/smart-contracts/token-metadata) — attaching metadata to SPL tokens
-> - [Metaplex Core](https://www.metaplex.com/docs/smart-contracts/core) — the NFT standard used in the NFT scripts
+## Verification
 
-## SPL Token
+All required tasks were successfully executed on Solana Devnet.
 
-Uses **@solana/kit** and **@solana-program/token** for transactions, and **mpl-token-metadata** via UMI for on-chain metadata.
-
-| Script | Command | What it does |
-|---|---|---|
-| `spl_init.ts` | `npm run spl:init` | Creates a new mint account |
-| `spl_metadata.ts` | `npm run spl:metadata` | Attaches a name, symbol, and URI to the mint |
-| `spl_mint.ts` | `npm run spl:mint` | Creates your associated token account and mints tokens into it |
-| `spl_transfer.ts` | `npm run spl:transfer` | Sends tokens to another wallet i.e ata to ata |
-
-Run them in order. Each script logs the addresses/signatures you'll need to paste into the next one.
-
----
-
-## NFT
-
-Uses **@solana/kit** and **mpl-core** via UMI. Images and metadata are stored on Irys (decentralized storage).
-
-| Script | Command | What it does |
-|---|---|---|
-| `nft_image.ts` | `npm run nft:image` | Uploads your image to Irys, logs the image URI |
-| `nft_metadata.ts` | `npm run nft:metadata` | Builds the metadata JSON and uploads it, logs the metadata URI |
-| `nft_mint.ts` | `npm run nft:mint` | Mints the NFT on-chain using the metadata URI |
-
-Run them in order. Paste the URI logged by each step into the next script before running it.
+The Solana Explorer links above provide on-chain verification of the completed work.
